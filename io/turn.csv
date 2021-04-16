@@ -1,0 +1,13 @@
+no,type,length,avgSpeed
+0,Straight,1200,100
+1,LowSpeedTurn,144,30
+2,Straight,336,70
+3,HighSpeedTurn,384,80
+4,Straight,648,90
+5,LowSpeedTurn,180,30
+6,MediumSpeedTurn,180,50
+7,MediumSpeedTurn,180,50
+8,Straight,840,70
+9,HighSpeedTurn,360,60
+10,Straight,864,90
+11,HighSpeedTurn,432,60
