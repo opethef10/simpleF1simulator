@@ -1,6 +1,6 @@
 class Factory:
     @classmethod
     def create(cls, subclassName, *args, **kwargs):
-        subclassDict = {subcls.__name__: subcls for subcls in cls.__subclasses__()}
-        subclass = subclassDict[subclassName]
-        return subclass(*args, **kwargs)
+        for subclass in cls.__subclasses__():
+            if subclass.__name__ == subclassName:
+                return subclass(*args, **kwargs)
