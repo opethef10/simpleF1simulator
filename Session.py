@@ -1,13 +1,10 @@
 import csv
-import json
-from Session import *
-from Track import *
-from Turn import *
-from Tyre import *
-from Car import *
-from Engine import *
-from Chassis import *
-from Helper import *
+from Track import Track
+from Turn import Turn
+from Tyre import Tyre
+from Car import Car
+from Engine import Engine
+from Chassis import Chassis
 
 class Session:
     def __init__(self):
@@ -36,17 +33,13 @@ class Session:
                 in csv.DictReader(carsCsv)
             ]
 
-    def __repr__(self):
+    def __str__(self):
         return "totalLaps: {}\ntrack: {}\ncarList: {}".format(self.totalLaps,self.track,self.carList)
     
     def simulate(self):
         with open("io/out.txt", "w") as outputText:
-            if self.track==None:
-                print("No track")
-                return None
-            
             print("***SIMULATION STARTED***")
-            print("trackName: {}, length: {:.3f} km, totalLaps: {}, totalLength: {:.1f} km".format(self.track.trackName,self.track.trackLength(),self.totalLaps,self.track.trackLength()*self.totalLaps),file=outputText)
+            print(f"trackName: {self.track.trackName}, length: {self.track.trackLength():.3f} km, totalLaps: {self.totalLaps}, totalLength: {self.track.trackLength()*self.totalLaps:.1f} km", file=outputText)
             print(self.track.turnList,file=outputText)
             #print(self.track.turnList)
             
@@ -55,6 +48,10 @@ class Session:
                     for car in self.carList:
                         car.tick(viraj,lap)
                 #print("LAP:",lap+1,"\n",self.carList)
-                print("LAP:",lap+1,"\n",self.carList,file=outputText)
-            print("FINAL CLASSIFICATION:\n",sorted(self.carList),file=outputText)
+                print("LAP:", lap+1, file=outputText)
+                for car in self.carList:
+                    print(car, file = outputText)
+            print("FINAL CLASSIFICATION:",file=outputText)
+            for car in sorted(self.carList):
+                print(car, file=outputText)
             print("***SIMULATION FINISHED, CHECK OUT.TXT***")

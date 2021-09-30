@@ -3,7 +3,7 @@ class Track:
         self.trackName=trackName
         self.turnList=turnList
         
-    def __repr__(self):
+    def __str__(self):
         return "\ttrackName: {}\n\tturnList: {}".format(self.trackName,self.turnList)
     
     def trackLength(self) :
